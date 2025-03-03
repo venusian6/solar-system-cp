@@ -12,7 +12,7 @@ pipeline {
               npm -v
               '''
             }
-            stage("NPM Dependency checking'){
+            stage('NPM Dependency checking'){
                   steps{
                       sh ''' npm audit-level=critical
                       echo $?

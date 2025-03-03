@@ -10,8 +10,14 @@ pipeline {
               sh '''
               node -v
               npm -v
-              
               '''
+            }
+            stage("NPM Dependency checking'){
+                  steps{
+                      sh ''' npm audit-level=critical
+                      echo $?
+                      '''
+                  }
             }
         }
     }

@@ -37,7 +37,7 @@ pipeline {
                         --scan ./
                         --out ./
                         --format ALL
-                        --pretty-print
+                        --prettyPrint
                         ''', nvdCredentialsId: 'NVD_API_KEY', odcInstallation: 'OWASP-DEPCHECK-12'
                     }
                 }

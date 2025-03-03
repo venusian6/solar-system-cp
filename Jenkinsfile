@@ -13,6 +13,12 @@ pipeline {
               '''
             }
         }
+        stage('NPM install'){
+            steps{
+                sh ' npm install --no audit'
+            }
+        }
+        
         stage('NPM Dependency checking'){
                   steps {
                       sh ''' npm audit  --audit-level=critical
@@ -20,6 +26,18 @@ pipeline {
                       '''
                   }
             }
+        stage('OWASP Dependency'){
+            steps{
+              
+dependencyCheck additionalArguments: '''--scan ./
+ --out ./
+--format ALL
+--pretty-print''', nvdCredentialsId: 'NVD_API_KEY', odcInstallation: 'OWASP-DEPCHECK-12'
+
+
+            
+            }
+        }
         }
     
 }

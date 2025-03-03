@@ -18,8 +18,10 @@ pipeline {
                 sh ' npm install --no audit'
             }
         }
-        
-        stage('NPM Dependency checking'){
+
+        stage('Dependency check'){
+parallel{
+      stage('NPM Dependency checking'){
                   steps {
                       sh ''' npm audit  --audit-level=critical
                       echo $?
@@ -38,6 +40,12 @@ dependencyCheck additionalArguments: '''--scan ./
             
             }
         }
+    
+}
+            
+            
+        }
+      
         }
     
 }

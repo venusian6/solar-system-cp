@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, '/')));
 app.use(cors());
 
 // MongoDB Connection
-mongodb+srv://harrypotter007007007007:abc@cluster0.c74zw.mongodb.net/superaData', {
+mongoose.connect('mongodb+srv://harr:abcffff@cluster0.c74zw.mongodb.net/superaData', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }, function (err) {

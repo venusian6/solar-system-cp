@@ -46,6 +46,11 @@ pipeline {
                    // dependencyCheckPublisher failedTotalCritical: 1, pattern: '/var/lib/jenkins/workspace/npm-version-test/dependency-check-report.xml', stopBuild: true
                     }
                 }
+                stage('Unit Testing'){
+                    steps{
+                        sh 'npm test'
+                    }
+                }
             }
         }
     }

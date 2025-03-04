@@ -11,18 +11,30 @@ app.use(express.static(path.join(__dirname, '/')));
 app.use(cors());
 
 // MongoDB connection
-mongoose.connect('mongodb+srv://harrypotter007007007007:abc@cluster0.c74zw.mongodb.net/superaData', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}, function (err) {
-    if (err) {
-        console.log("error!! " + err);
-    } else {
-        // console.log("MongoDB Connection Successful");
-    }
-});
 
-// Define the schema for planets
+
+
+async function connectDB() {
+    try {
+        await mongoose.connect('mongodb+srv://harrypotter007007007007:abc@cluster0.c74zw.mongodb.net/superaData', {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            serverSelectionTimeoutMS: 15000, // Increased connection timeout to 15 seconds
+            socketTimeoutMS: 60000, // Increased socket timeout to 60 seconds
+        });
+        console.log('MongoDB Connection Successful');
+    } catch (err) {
+        console.log('Error connecting to MongoDB: ', err);
+    }
+}
+
+// Call the function to establish the connection
+connectDB();
+
+
+//
+
+
 const Schema = mongoose.Schema;
 const dataSchema = new Schema({
     name: String,
@@ -93,4 +105,4 @@ app.listen(3000, () => {
     console.log("Server successfully running on port - " + 3000);
 });
 
-module.exports = app;
+module.exports = app;                

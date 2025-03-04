@@ -1,5 +1,3 @@
-
-
 const mongoose = require("mongoose");
 const server = require("./app");
 const chai = require("chai");
@@ -14,13 +12,18 @@ describe('Planets API Suite', () => {
     // Reusable function to fetch planet details
     const fetchPlanetDetails = async (id, expectedName) => {
         const payload = { id };
-        const res = await chai.request(server)
-            .post('/planet')
-            .send(payload);
+        try {
+            const res = await chai.request(server)
+                .post('/planet')
+                .send(payload);
 
-        res.should.have.status(200);
-        res.body.should.have.property('id').eql(id);
-        res.body.should.have.property('name').eql(expectedName);
+            res.should.have.status(200);
+            res.body.should.have.property('id').eql(id);
+            res.body.should.have.property('name').eql(expectedName);
+        } catch (error) {
+            console.error(`Error fetching planet with id: ${id}`, error);
+            throw error;
+        }
     };
 
     describe('Fetching Planet Details', () => {
@@ -90,4 +93,4 @@ describe('Testing Other Endpoints', () => {
         });
     });
 
-                                      
+});

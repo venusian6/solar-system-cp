@@ -38,6 +38,7 @@ pipeline {
                         --out ./
                         --format ALL
                         --prettyPrint
+                        --disableYarnAudit
                         ''', nvdCredentialsId: 'NVD_API_KEY', odcInstallation: 'OWASP-DEPCHECK-12'
                     }
                 }

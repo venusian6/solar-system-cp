@@ -16,6 +16,10 @@ pipeline {
         }
         
         stage('NPM install') {
+            options {
+  timestamps
+}
+
             steps {
                 sh 'npm install --no audit'
             }

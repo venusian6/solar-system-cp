@@ -17,7 +17,7 @@ pipeline {
         
         stage('NPM install') {
             options {
-  timestamps
+  timestamps()
 }
 
             steps {

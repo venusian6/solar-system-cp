@@ -4,6 +4,9 @@ pipeline {
     tools {
         nodejs 'node'
     }
+    environment {
+        MONGO_URI = "mongodb+srv://${env.MONGO_USER}:${env.MONGO_PASSWORD}@cluster0.c74zw.mongodb.net/superaData'"
+    }
 
     stages {
         stage('Hello') {

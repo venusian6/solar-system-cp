@@ -65,7 +65,7 @@ pipeline {
                 }
  stage('Code -coverage') {
             steps {
-                
+                sh ' npm start'
             }
         }
 

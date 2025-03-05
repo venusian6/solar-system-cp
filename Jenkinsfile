@@ -2,12 +2,7 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'node' // Ensure you have the correct Node.js tool setup in Jenkins
-    }
-
-    environment {
-        // Correct the MONGO_URI and make sure it's properly formed
-        MONGO_URI = "mongodb+srv://${env.MONGO_USER}:${env.MONGO_PASSWORD}@cluster0.c74zw.mongodb.net/superaData"
+        nodejs 'node'
     }
 
     stages {
@@ -63,29 +58,18 @@ pipeline {
 
                     steps {
                         withCredentials([usernamePassword(credentialsId: 'mongo-db-credentials', passwordVariable: 'MONGO_PASSWORD', usernameVariable: 'MONGO_USERNAME')]) {
-                            // Use MONGO_URI inside the application
-                            echo "MongoDB credentials injected"
-                            // Assuming you're running a Node.js app that needs the MongoDB URI and credentials
-                            sh '''
-                            export MONGO_URI="mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@cluster0.c74zw.mongodb.net/superaData"
-                            npm test
-                            junit '**/test-results/*.xml' // Specify the path to the JUnit test results
-                            '''
-                        }
+    // some block
+}
+                        sh 'npm test'
                     }
                 }
+ stage('Code -coverage') {
+            steps {
+                
+            }
+        }
 
-                stage('Code Coverage') {
-                    steps {
-                        // Implement code coverage logic here if necessary
-                        echo 'Running code coverage...'
-                    }
-                }
-                stage('Npm Run'){
-                    steps{
-                        sh 'npm start'
-                    }
-                }
+                
             }
         }
     }

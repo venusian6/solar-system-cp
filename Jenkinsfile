@@ -17,6 +17,7 @@ pipeline {
         
         stage('NPM install') {
             steps {
+                option{timestamp()}
                 sh 'npm install --no audit'
             }
         }
@@ -47,6 +48,7 @@ pipeline {
                     }
                 }
                 stage('Unit Testing'){
+                    option{retry(2)}
                     steps{
                         sh 'npm test'
                     }

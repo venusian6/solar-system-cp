@@ -51,6 +51,10 @@ pipeline {
                     }
                 }
                 stage('Unit Testing'){
+               options {
+  timestamps
+  retry(2)
+}
                     steps{
                         sh 'npm test'
                     }

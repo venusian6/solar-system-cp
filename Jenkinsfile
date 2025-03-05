@@ -69,6 +69,7 @@ pipeline {
                             sh '''
                             export MONGO_URI="mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@cluster0.c74zw.mongodb.net/superaData"
                             npm test
+                            junit '**/test-results/*.xml' // Specify the path to the JUnit test results
                             '''
                         }
                     }

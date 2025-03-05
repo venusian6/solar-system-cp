@@ -63,11 +63,12 @@ pipeline {
                         sh 'npm test'
                     }
                 }
- stage('Code -coverage') {
+stage('Start Application') {
             steps {
-                sh 'npm start'
+                timeout(time: 5, unit: 'MINUTES') { // Timeout after 5 minutes
+                    sh 'npm start'
+                }
             }
-        }
 
                 
             }

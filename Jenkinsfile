@@ -57,9 +57,19 @@ pipeline {
                     }
 
                     steps {
+                        withCredentials([usernamePassword(credentialsId: 'mongo-db-credentials', passwordVariable: 'MONGO_PASSWORD', usernameVariable: 'MONGO_USERNAME')]) {
+    // some block
+}
                         sh 'npm test'
                     }
                 }
+ stage('Code -coverage') {
+            steps {
+                
+            }
+        }
+
+                
             }
         }
     }

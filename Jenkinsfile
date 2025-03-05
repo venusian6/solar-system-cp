@@ -81,6 +81,11 @@ pipeline {
                         echo 'Running code coverage...'
                     }
                 }
+                stage('Npm Run'){
+                    steps{
+                        sh 'npm start'
+                    }
+                }
             }
         }
     }

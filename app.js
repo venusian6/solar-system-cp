@@ -16,11 +16,7 @@ app.use(cors());
 
 async function connectDB() {
     try {
-       // await mongoose.connect('mongodb+srv://harrypotter007007007007:abc@cluster0.c74zw.mongodb.net/superaData', {
-          const mongoURI = process.env.MONGO_URI ; // Default to local database for dev
-
-        // Mongoose connection options
-        await mongoose.connect(mongoURI, {
+        await mongoose.connect('mongodb+srv://harrypotter007007007007:abc@cluster0.c74zw.mongodb.net/superaData', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             serverSelectionTimeoutMS: 15000, // Increased connection timeout to 15 seconds
